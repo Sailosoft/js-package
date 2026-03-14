@@ -4,17 +4,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>React + TS + Tailwind (SystemJS)</title>
 
-    <script src="../assets/scripts/tailwind.js"></script>
+    <script src="assets/scripts/tailwind.js"></script>
 
     <script
       type="systemjs-importmap"
-      src="../dependencies/react-projects/react-19.json"
+      src="dependencies/react-projects/react-19.json"
     ></script>
 
     <link rel="modulepreload" href="https://esm.sh/react@19">
     <link rel="modulepreload" href="https://esm.sh/react-dom@19/client?deps=react@19">
-    <script src="../assets/scripts/system.min.js"></script>
-    <script src="../assets/scripts/systemjs-babel.min.js"></script>
+    <script src="assets/scripts/system.min.js"></script>
+    <script src="assets/scripts/systemjs-babel.min.js"></script>
   </head>
   <body>
     <div id="app">
@@ -30,7 +30,7 @@
       </div>
     </div>
     <script>
-      System.import("./react/main/App.tsx")
+      System.import("./src/react/main/App.tsx")
         .then(() => {
           console.log("src/app.jsx loaded and executed successfully.");
         })
