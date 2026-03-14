@@ -1,0 +1,153 @@
+<link
+  href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+  rel="stylesheet"
+/>
+
+<style>
+  body {
+    background-color: #e8eaf0;
+    font-family: "Plus Jakarta Sans", sans-serif;
+  }
+  .neo-raised {
+    box-shadow:
+      6px 6px 12px rgba(0, 0, 0, 0.08),
+      -6px -6px 12px rgba(255, 255, 255, 0.6);
+    background-color: #e8eaf0;
+  }
+  .neo-inset {
+    box-shadow:
+      inset 4px 4px 8px rgba(0, 0, 0, 0.06),
+      inset -4px -4px 8px rgba(255, 255, 255, 0.5);
+    background-color: #e8eaf0;
+  }
+  .neo-button:active {
+    box-shadow:
+      inset 4px 4px 8px rgba(0, 0, 0, 0.06),
+      inset -4px -4px 8px rgba(255, 255, 255, 0.5);
+  }
+  .neo-tile:hover {
+    box-shadow:
+      8px 8px 16px rgba(99, 102, 241, 0.2),
+      -8px -8px 16px rgba(255, 255, 255, 0.8);
+  }
+  .status-glow {
+    text-shadow: 0 0 8px rgba(99, 102, 241, 0.4);
+  }
+  .mask-linear-gradient {
+    mask-image: linear-gradient(to right, transparent, black);
+  }
+</style>
+<main class="flex-1 flex flex-col p-4 pr-6">
+  <!-- TopNavBar -->
+  <header
+    class="neo-raised rounded-xl p-4 mb-6 flex items-center justify-between"
+  >
+    <div class="flex items-center gap-4">
+      <span class="text-on-surface font-headline font-bold text-lg"
+        >App Index</span
+      >
+    </div>
+    <div class="flex items-center gap-6">
+      <div
+        class="neo-inset px-4 py-2 rounded-full flex items-center gap-2 w-64"
+      >
+        <span class="material-symbols-outlined text-outline" data-icon="search"
+          >search</span
+        >
+        <input
+          class="bg-transparent border-none focus:ring-0 text-sm text-on-surface w-full"
+          placeholder="Search applications..."
+          type="text"
+        />
+      </div>
+      <div class="flex gap-3">
+        <button
+          class="w-10 h-10 neo-raised rounded-full flex items-center justify-center text-on-surface-variant hover:text-primary"
+        >
+          <span class="material-symbols-outlined" data-icon="settings"
+            >settings</span
+          >
+        </button>
+        <button
+          class="w-10 h-10 neo-raised rounded-full flex items-center justify-center text-on-surface-variant hover:text-primary"
+        >
+          <span class="material-symbols-outlined" data-icon="account_circle"
+            >account_circle</span
+          >
+        </button>
+      </div>
+    </div>
+  </header>
+  <!-- Status Area -->
+  <div class="neo-inset rounded-xl p-6 mb-8 flex items-center justify-between">
+    <div class="flex items-center gap-4">
+      <div
+        class="w-3 h-3 bg-primary rounded-full animate-pulse shadow-[0_0_8px_rgba(99,102,241,0.6)]"
+      ></div>
+      <p class="text-on-surface font-medium status-glow" id="status-text">
+        System Ready. Select an application to begin.
+      </p>
+    </div>
+    <div class="text-on-surface-variant text-sm font-mono" id="clock-display">
+      09:41 AM — ONLINE
+    </div>
+  </div>
+  <!-- App Grid (Balanced 4x4 Grid) -->
+  <div
+    class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 auto-rows-[160px]"
+  >
+    <!-- Mail -->
+    <div
+      class="neo-raised neo-tile rounded-xl p-6 flex flex-col justify-between group cursor-pointer transition-all duration-300"
+      onclick="__main.launchApp('Mail')"
+    >
+      <div class="flex justify-between items-start">
+        <span
+          class="material-symbols-outlined text-4xl text-primary"
+          data-icon="mail"
+          >mail</span
+        >
+        <button
+          class="neo-raised neo-button text-[10px] font-bold px-2 py-1 rounded text-on-surface-variant hover:text-primary"
+          onclick="
+            event.stopPropagation();
+            setDefault('Mail');
+          "
+        >
+          SET DEFAULT
+        </button>
+      </div>
+      <div>
+        <h3 class="text-on-surface font-semibold text-lg">Mail</h3>
+        <p class="text-on-surface-variant text-xs">4 Unread Messages</p>
+      </div>
+    </div>
+    <!-- Browser -->
+    <div
+      class="neo-raised neo-tile rounded-xl p-6 flex flex-col justify-between group cursor-pointer transition-all duration-300"
+      onclick="__main.launchApp('Browser')"
+    >
+      <div class="flex justify-between items-start">
+        <span
+          class="material-symbols-outlined text-4xl text-tertiary"
+          data-icon="language"
+          >language</span
+        >
+        <button
+          class="neo-raised neo-button text-[10px] font-bold px-2 py-1 rounded text-on-surface-variant hover:text-tertiary"
+          onclick="
+            event.stopPropagation();
+            setDefault('Browser');
+          "
+        >
+          SET DEFAULT
+        </button>
+      </div>
+      <div>
+        <h3 class="text-on-surface font-semibold text-lg">Browser</h3>
+        <p class="text-on-surface-variant text-xs">Chrome 119</p>
+      </div>
+    </div>
+  </div>
+</main>
+

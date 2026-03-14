@@ -4,15 +4,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>React + TS + Tailwind (SystemJS)</title>
 
-    <script src="assets/scripts/tailwind.js"></script>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <!-- <script src="assets/scripts/tailwind.js"></script> -->
 
     <script
       type="systemjs-importmap"
       src="dependencies/react-projects/react-19.json"
     ></script>
 
-    <link rel="modulepreload" href="https://esm.sh/react@19">
-    <link rel="modulepreload" href="https://esm.sh/react-dom@19/client?deps=react@19">
+    <link rel="modulepreload" href="https://esm.sh/react@19" />
+    <link
+      rel="modulepreload"
+      href="https://esm.sh/react-dom@19/client?deps=react@19"
+    />
     <script src="assets/scripts/system.min.js"></script>
     <script src="assets/scripts/systemjs-babel.min.js"></script>
   </head>
@@ -30,22 +34,31 @@
       </div>
     </div>
     <script>
-      System.import("./src/react/main/App.tsx")
-        .then(() => {
-          console.log("src/app.jsx loaded and executed successfully.");
+      fetch("./src/html/main/main.html")
+        .then((response) => response.text())
+        .then((html) => {
+          // Select the element in your main HTML where you want to place it
+          document.getElementById("app").innerHTML = html;
         })
-        .catch((err) => {
-          // Display error message on the page if loading fails
-          const root = document.getElementById("app");
-          if (root) {
-            root.innerHTML = `<div class="
-                <h2 class="text-xl font-bold mb-2">Failed to Load Application</h2>
-                <p>Check the console for details on the SystemJS/Babel error.</p>
-                <pre class="whitespace-pre-wrap text-sm mt-3">${err.message || err.stack || err}</pre>
-            </div>`;
-          }
-          console.error("Error loading App:", err);
-        });
+        .catch((err) => console.error("Failed to load HTML:", err));
+      System.import("./src/html/main/main.js");
+
+      // System.import("./src/react/main/App.tsx")
+      //   .then(() => {
+      //     console.log("src/app.jsx loaded and executed successfully.");
+      //   })
+      //   .catch((err) => {
+      //     // Display error message on the page if loading fails
+      //     const root = document.getElementById("app");
+      //     if (root) {
+      //       root.innerHTML = `<div class="
+      //           <h2 class="text-xl font-bold mb-2">Failed to Load Application</h2>
+      //           <p>Check the console for details on the SystemJS/Babel error.</p>
+      //           <pre class="whitespace-pre-wrap text-sm mt-3">${err.message || err.stack || err}</pre>
+      //       </div>`;
+      //     }
+      //     console.error("Error loading App:", err);
+      //   });
     </script>
   </body>
 </html>
