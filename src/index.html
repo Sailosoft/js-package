@@ -1,0 +1,51 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>React + TS + Tailwind (SystemJS)</title>
+
+    <script src="../assets/scripts/tailwind.js"></script>
+
+    <script
+      type="systemjs-importmap"
+      src="../dependencies/react-projects/react-19.json"
+    ></script>
+
+    <link rel="modulepreload" href="https://esm.sh/react@19">
+    <link rel="modulepreload" href="https://esm.sh/react-dom@19/client?deps=react@19">
+    <script src="../assets/scripts/system.min.js"></script>
+    <script src="../assets/scripts/systemjs-babel.min.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <div
+        class="flex flex-col items-center justify-center min-h-screen space-y-4"
+      >
+        <div
+          class="w-12 h-12 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"
+        ></div>
+        <p class="text-slate-400 font-medium animate-pulse">
+          Initializing ESM Modules...
+        </p>
+      </div>
+    </div>
+    <script>
+      System.import("./react/main/App.tsx")
+        .then(() => {
+          console.log("src/app.jsx loaded and executed successfully.");
+        })
+        .catch((err) => {
+          // Display error message on the page if loading fails
+          const root = document.getElementById("app");
+          if (root) {
+            root.innerHTML = `<div class="
+                <h2 class="text-xl font-bold mb-2">Failed to Load Application</h2>
+                <p>Check the console for details on the SystemJS/Babel error.</p>
+                <pre class="whitespace-pre-wrap text-sm mt-3">${err.message || err.stack || err}</pre>
+            </div>`;
+          }
+          console.error("Error loading App:", err);
+        });
+    </script>
+  </body>
+</html>

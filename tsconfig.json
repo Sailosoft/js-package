@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "Bundler", // Critical for modern ESM
+    "jsx": "react-jsx",
+    "strict": true,
+    "skipLibCheck": true,
+    "allowImportingTsExtensions": true,
+    "noEmit": true,
+    "baseUrl": ".",
+    "types": [],
+    "paths": {
+      "react": ["./types/react/19/react.d.ts"],
+      "css": ["./types/css/main/css.d.ts"],
+      "react-dom": ["./types/react-dom/19/react-dom.d.ts"],
+      "react-dom/client": ["./types/react-dom/19/client/client.d.ts"],
+      "estree": ["types/estree/estree.d.ts"],
+      "react/jsx-runtime": ["./types/react/19/react.d.ts"],
+      "react-router-dom": ["./types/react-router-dom/local/react-router-dom.d.ts"]
+    }
+  },
+  "include": ["src/**/*", "types/**/*", "types", "react/**/*"], 
+}
