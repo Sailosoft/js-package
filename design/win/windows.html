@@ -1,0 +1,420 @@
+<!doctype html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Windows 11 Desktop Simulation</title>
+    <!-- Tailwind CSS CDN with plugins -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <!-- Tailwind Configuration for custom colors/animations if needed -->
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              winTaskbar: "rgba(28, 28, 28, 0.75)",
+              winIconHover: "rgba(255, 255, 255, 0.1)",
+            },
+            backdropBlur: {
+              winMica: "20px",
+            },
+          },
+        },
+      };
+    </script>
+    <!-- BEGIN: Custom Styles -->
+    <style data-purpose="background-styles">
+      body,
+      html {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        overflow: hidden;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      /* Simulating the Windows 11 Bloom wallpaper gradient */
+      .win11-wallpaper {
+        background: radial-gradient(
+          circle at 50% 50%,
+          #4a54d1 0%,
+          #1a1a40 100%
+        );
+        background-size: cover;
+        height: 100vh;
+        width: 100vw;
+        position: relative;
+      }
+
+      /* Abstract shapes to mimic Bloom effect */
+      .bloom-blob {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(80px);
+        opacity: 0.6;
+        z-index: 0;
+      }
+    </style>
+    <style data-purpose="layout-styles">
+      .taskbar-blur {
+        backdrop-filter: blur(20px) saturate(125%);
+        background-color: rgba(28, 28, 28, 0.8);
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .desktop-icon {
+        transition: background 0.2s ease;
+        border: 1px solid transparent;
+      }
+
+      .desktop-icon:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 4px;
+      }
+
+      .taskbar-item:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+        border-radius: 4px;
+      }
+    </style>
+    <!-- END: Custom Styles -->
+  </head>
+  <body>
+    <!-- BEGIN: Desktop Environment -->
+    <main class="win11-wallpaper overflow-hidden flex flex-col justify-between">
+      <!-- Decorative Bloom Elements -->
+      <div
+        class="bloom-blob bg-purple-500 w-[600px] h-[600px] top-[-10%] left-[20%]"
+      ></div>
+      <div
+        class="bloom-blob bg-blue-400 w-[500px] h-[500px] bottom-[10%] right-[10%]"
+      ></div>
+      <!-- BEGIN: Desktop Icons Grid -->
+      <section
+        class="relative z-10 p-4 grid grid-cols-1 gap-2 w-24 h-min"
+        data-purpose="desktop-icons"
+      >
+        <!-- This PC -->
+        <div
+          class="desktop-icon flex flex-col items-center p-2 cursor-default group"
+        >
+          <div class="w-10 h-10 mb-1 flex items-center justify-center">
+            <svg
+              class="w-full h-full"
+              viewbox="0 0 48 48"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M40 37H8c-1.1 0-2-.9-2-2V9c0-1.1.9-2 2-2h32c1.1 0 2 .9 2 2v26c0 1.1-.9 2-2 2z"
+                fill="#90caf9"
+              ></path>
+              <path
+                d="M44 37H4c-1.1 0-2 .9-2 2v2h44v-2c0-1.1-.9-2-2-2z"
+                fill="#1976d2"
+              ></path>
+              <path d="M38 11H10v22h28V11z" fill="#64b5f6"></path>
+            </svg>
+          </div>
+          <span class="text-white text-xs text-center drop-shadow-md"
+            >This PC</span
+          >
+        </div>
+        <!-- Recycle Bin -->
+        <div
+          class="desktop-icon flex flex-col items-center p-2 cursor-default group"
+        >
+          <div class="w-10 h-10 mb-1 flex items-center justify-center">
+            <svg
+              class="w-full h-full"
+              viewbox="0 0 48 48"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M11 12h26v28c0 2.2-1.8 4-4 4H15c-2.2 0-4-1.8-4-4V12z"
+                fill="#cfd8dc"
+              ></path>
+              <path
+                d="M39 8H9c-1.1 0-2 .9-2 2s.9 2 2 2h30c1.1 0 2-.9 2-2s-.9-2-2-2z"
+                fill="#90caf9"
+              ></path>
+              <path
+                d="M28 6h-8c-1.1 0-2 .9-2 2h12c0-1.1-.9-2-2-2z"
+                fill="#546e7a"
+              ></path>
+            </svg>
+          </div>
+          <span class="text-white text-xs text-center drop-shadow-md"
+            >Recycle Bin</span
+          >
+        </div>
+        <!-- Google Chrome -->
+        <div
+          class="desktop-icon flex flex-col items-center p-2 cursor-default group"
+        >
+          <div class="w-10 h-10 mb-1 flex items-center justify-center">
+            <svg
+              class="w-full h-full"
+              viewbox="0 0 48 48"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M24 4C14.1 4 5.9 11.1 4.3 20.6l8.8 1.4C13.8 17.5 18.5 14 24 14c2 0 3.9.5 5.5 1.3l5-8.7C31.5 5.1 27.9 4 24 4z"
+                fill="#FFC107"
+              ></path>
+              <path
+                d="M43.7 20.6C42.1 11.1 33.9 4 24 4l5.5 9.3c5.5.9 9.8 5.2 10.7 10.7l8.7-5c-1.1-3-2.9-5.7-5.2-8.4z"
+                fill="#FF3D00"
+                opacity=".05"
+              ></path>
+              <path
+                d="M24 44c9.9 0 18.1-7.1 19.7-16.6l-8.8-1.4C34.2 30.5 29.5 34 24 34c-2 0-3.9-.5-5.5-1.3l-5 8.7C16.5 42.9 20.1 44 24 44z"
+                fill="#4CAF50"
+              ></path>
+              <path
+                d="M24 16c-4.4 0-8 3.6-8 8s3.6 8 8 8 8-3.6 8-8-3.6-8-8-8z"
+                fill="#1976D2"
+              ></path>
+            </svg>
+          </div>
+          <span class="text-white text-xs text-center drop-shadow-md"
+            >Google Chrome</span
+          >
+        </div>
+        <!-- Spotify -->
+        <div
+          class="desktop-icon flex flex-col items-center p-2 cursor-default group"
+        >
+          <div
+            class="w-10 h-10 mb-1 flex items-center justify-center bg-[#1DB954] rounded-full p-1"
+          >
+            <svg
+              class="w-full h-full"
+              fill="white"
+              viewbox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.503 17.306c-.216.354-.675.465-1.028.249-2.863-1.748-6.465-2.144-10.708-1.177-.404.093-.811-.161-.904-.565-.093-.404.161-.811.565-.904 4.646-1.064 8.636-.612 11.826 1.334.353.216.464.675.249 1.028zm1.472-3.26c-.272.44-.847.578-1.287.306-3.276-2.013-8.271-2.597-12.145-1.42-.497.151-1.019-.13-1.17-.627-.151-.498.13-1.02.627-1.17 4.431-1.345 9.94-.691 13.682 1.611.44.272.578.847.306 1.287zm.127-3.41c-3.928-2.333-10.414-2.548-14.195-1.4c-.602.183-1.238-.162-1.421-.764-.183-.602.162-1.238.764-1.421 4.341-1.318 11.51-1.066 16.03 1.616.541.321.716 1.021.395 1.562-.321.541-1.021.716-1.562.395z"
+              ></path>
+            </svg>
+          </div>
+          <span class="text-white text-xs text-center drop-shadow-md"
+            >Spotify</span
+          >
+        </div>
+        <!-- Documents Folder -->
+        <div
+          class="desktop-icon flex flex-col items-center p-2 cursor-default group"
+        >
+          <div class="w-10 h-10 mb-1 flex items-center justify-center">
+            <svg
+              class="w-full h-full"
+              viewbox="0 0 48 48"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M40 12H22l-4-4H8c-2.2 0-4 1.8-4 4v24c0 2.2 1.8 4 4 4h32c2.2 0 4-1.8 4-4V16c0-2.2-1.8-4-4-4z"
+                fill="#FFA000"
+              ></path>
+            </svg>
+          </div>
+          <span class="text-white text-xs text-center drop-shadow-md"
+            >Documents</span
+          >
+        </div>
+      </section>
+      <!-- END: Desktop Icons Grid -->
+      <!-- BEGIN: Taskbar -->
+      <footer
+        class="taskbar-blur h-12 w-full flex items-center justify-between px-3 relative z-20"
+        data-purpose="taskbar"
+      >
+        <!-- Left side (Empty space for balance or widgets icon) -->
+        <div class="w-48 hidden md:block">
+          <!-- Optional Widgets Icon could go here -->
+        </div>
+        <!-- CENTERED: App Icons -->
+        <div
+          class="flex items-center gap-1 absolute left-1/2 -translate-x-1/2"
+          id="taskbar-center"
+        >
+          <!-- Start Button -->
+          <button
+            class="taskbar-item p-2 transition-all duration-200 hover:scale-110 active:scale-90"
+            title="Start"
+          >
+            <svg
+              class="w-6 h-6"
+              viewbox="0 0 88 88"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path d="M0 0h42v42H0z" fill="#00adef"></path>
+              <path d="M46 0h42v42H46z" fill="#00adef"></path>
+              <path d="M0 46h42v42H0z" fill="#00adef"></path>
+              <path d="M46 46h42v42H46z" fill="#00adef"></path>
+            </svg>
+          </button>
+          <!-- File Explorer -->
+          <button class="taskbar-item p-2 group" title="File Explorer">
+            <svg
+              class="w-6 h-6"
+              viewbox="0 0 48 48"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M40 12H22l-4-4H8c-2.2 0-4 1.8-4 4v24c0 2.2 1.8 4 4 4h32c2.2 0 4-1.8 4-4V16c0-2.2-1.8-4-4-4z"
+                fill="#FFA000"
+              ></path>
+            </svg>
+            <div
+              class="h-0.5 w-1.5 bg-gray-400 mx-auto mt-0.5 rounded-full"
+            ></div>
+          </button>
+          <!-- Microsoft Edge -->
+          <button class="taskbar-item p-2" title="Edge">
+            <svg
+              class="w-6 h-6"
+              viewbox="0 0 48 48"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M24,4C13,4,4,13,4,24s9,20,20,20s20-9,20-20S35,4,24,4z M24,38c-7.7,0-14-6.3-14-14s6.3-14,14-14s14,6.3,14,14 S31.7,38,24,38z"
+                fill="#0288D1"
+              ></path>
+              <path
+                d="M24,14c-5.5,0-10,4.5-10,10s4.5,10,10,10s10-4.5,10-10S29.5,14,24,14z"
+                fill="#81D4FA"
+              ></path>
+            </svg>
+          </button>
+          <!-- Microsoft Store -->
+          <button class="taskbar-item p-2" title="Microsoft Store">
+            <svg
+              class="w-6 h-6"
+              viewbox="0 0 48 48"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M42 14H6c-1.1 0-2 .9-2 2v22c0 1.1.9 2 2 2h36c1.1 0 2-.9 2-2V16c0-1.1-.9-2-2-2z"
+                fill="#EEEEEE"
+              ></path>
+              <path
+                d="M34 14V10c0-2.2-1.8-4-4-4h-12c-2.2 0-4 1.8-4 4v4h4v-4c0-1.1.9-2 2-2h12c1.1 0 2 .9 2 2v4h4z"
+                fill="#757575"
+              ></path>
+            </svg>
+          </button>
+          <!-- Mail -->
+          <button class="taskbar-item p-2" title="Mail">
+            <svg
+              class="w-6 h-6"
+              viewbox="0 0 48 48"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M42 10H6c-2.2 0-4 1.8-4 4v20c0 2.2 1.8 4 4 4h36c2.2 0 4-1.8 4-4V14c0-2.2-1.8-4-4-4z"
+                fill="#2196F3"
+              ></path>
+              <path d="M24 26L4 14v20l20 12 20-12V14z" fill="#BBDEFB"></path>
+            </svg>
+          </button>
+        </div>
+        <!-- RIGHT SIDE: System Tray -->
+        <div
+          class="flex items-center gap-2 text-white h-full pr-1"
+          data-purpose="system-tray"
+        >
+          <!-- Status Icons -->
+          <div
+            class="flex items-center gap-2 px-2 hover:bg-winIconHover rounded py-1 cursor-default transition-colors"
+          >
+            <!-- Wi-Fi -->
+            <svg class="w-4 h-4 fill-current" viewbox="0 0 24 24">
+              <path
+                d="M12 21l-12-12c4.352-4.108 10.334-6 12-6s7.648 1.892 12 6l-12 12z"
+              ></path>
+            </svg>
+            <!-- Volume -->
+            <svg class="w-4 h-4 fill-current" viewbox="0 0 24 24">
+              <path
+                d="M5 17h-5v-10h5v10zm2-10v10l9 5v-20l-9 5zm11 0c.667 1.333 1 2.667 1 4s-.333 2.667-1 4v-8z"
+              ></path>
+            </svg>
+            <!-- Battery -->
+            <svg class="w-4 h-4 fill-current rotate-90" viewbox="0 0 24 24">
+              <path
+                d="M17 6h-14c-1.1 0-2 .9-2 2v8c0 1.1.9 2 2 2h14v-12zm2 2v8c1.1 0 2-.9 2-2v-4c0-1.1-.9-2-2-2z"
+              ></path>
+            </svg>
+          </div>
+          <!-- Time and Date -->
+          <div
+            class="text-right text-[11px] leading-tight px-2 hover:bg-winIconHover rounded py-1 cursor-default transition-colors"
+            id="system-clock"
+          >
+            <div id="time-display">12:00 PM</div>
+            <div id="date-display">10/24/2023</div>
+          </div>
+          <!-- Action Center Line -->
+          <div class="w-[1px] h-3 bg-white/20 mx-1"></div>
+          <!-- Show Desktop Secret Button -->
+          <div class="w-1.5 h-full hover:bg-white/10 cursor-pointer"></div>
+        </div>
+      </footer>
+      <!-- END: Taskbar -->
+    </main>
+    <!-- END: Desktop Environment -->
+    <!-- BEGIN: Logic Scripts -->
+    <script data-purpose="clock-logic">
+      /**
+       * Updates the taskbar clock every second to simulate a real OS environment
+       */
+      function updateClock() {
+        const now = new Date();
+
+        // Format Time
+        const timeOptions = {
+          hour: "numeric",
+          minute: "2-digit",
+          hour12: true,
+        };
+        const timeString = now.toLocaleTimeString([], timeOptions);
+
+        // Format Date
+        const dateOptions = {
+          month: "numeric",
+          day: "numeric",
+          year: "numeric",
+        };
+        const dateString = now.toLocaleDateString([], dateOptions);
+
+        document.getElementById("time-display").textContent = timeString;
+        document.getElementById("date-display").textContent = dateString;
+      }
+
+      // Initial call
+      updateClock();
+      // Update every minute
+      setInterval(updateClock, 1000 * 60);
+    </script>
+    <script data-purpose="interactivity-logic">
+      /**
+       * Basic interactivity for UI feedback
+       */
+      document
+        .querySelectorAll(".taskbar-item, .desktop-icon")
+        .forEach((item) => {
+          item.addEventListener("click", () => {
+            // Just visual feedback for a mock
+            console.log(
+              "App clicked: " +
+                (item.title || item.querySelector("span")?.textContent),
+            );
+          });
+        });
+    </script>
+    <!-- END: Logic Scripts -->
+  </body>
+</html>
