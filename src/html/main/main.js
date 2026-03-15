@@ -5,3 +5,17 @@ window.__main = {
   },
 };
 console.log(window);
+
+(function () {
+  const DEFAULT_APP = "defaultApp";
+
+  const defaultApp = localStorage.getItem(DEFAULT_APP);
+
+  function getTemplate() {
+    
+  }
+
+  if (!defaultApp) {
+
+  }
+})();

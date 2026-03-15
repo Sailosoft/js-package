@@ -34,6 +34,24 @@
       </div>
     </div>
     <script>
+      const DEFAULT_APP = "defaultApp";
+
+      const defaultApp = localStorage.getItem(DEFAULT_APP);
+
+      if (defaultApp) {
+        
+      }
+
+      
+      // const queryString = window.location.search;
+
+      // // 2. Initialize URLSearchParams
+      // const urlParams = new URLSearchParams(queryString);
+
+      // // 3. Get specific values
+      // const name = urlParams.get("name"); // "Gemini"
+      // const mode = urlParams.get("mode"); // "dark"
+
       fetch("./src/html/main/main.html")
         .then((response) => response.text())
         .then((html) => {
