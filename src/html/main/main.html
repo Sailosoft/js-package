@@ -4,6 +4,9 @@
 />
 
 <style>
+  [x-cloak] {
+    display: none !important;
+  }
   body {
     background-color: #e8eaf0;
     font-family: "Plus Jakarta Sans", sans-serif;
@@ -37,66 +40,126 @@
     mask-image: linear-gradient(to right, transparent, black);
   }
 </style>
-<main class="flex-1 flex flex-col p-4 pr-6">
-  <!-- TopNavBar -->
-  <header
-    class="neo-raised rounded-xl p-4 mb-6 flex items-center justify-between"
-  >
-    <div class="flex items-center gap-4">
-      <span class="text-on-surface font-headline font-bold text-lg"
-        >App Index</span
-      >
-    </div>
-    <div class="flex items-center gap-6">
-      <div
-        class="neo-inset px-4 py-2 rounded-full flex items-center gap-2 w-64"
-      >
-        <span class="material-symbols-outlined text-outline" data-icon="search"
-          >search</span
-        >
-        <input
-          class="bg-transparent border-none focus:ring-0 text-sm text-on-surface w-full"
-          placeholder="Search applications..."
-          type="text"
-        />
-      </div>
-      <div class="flex gap-3">
-        <button
-          class="w-10 h-10 neo-raised rounded-full flex items-center justify-center text-on-surface-variant hover:text-primary"
-        >
-          <span class="material-symbols-outlined" data-icon="settings"
-            >settings</span
-          >
-        </button>
-        <button
-          class="w-10 h-10 neo-raised rounded-full flex items-center justify-center text-on-surface-variant hover:text-primary"
-        >
-          <span class="material-symbols-outlined" data-icon="account_circle"
-            >account_circle</span
-          >
-        </button>
-      </div>
-    </div>
-  </header>
-  <!-- Status Area -->
-  <div class="neo-inset rounded-xl p-6 mb-8 flex items-center justify-between">
-    <div class="flex items-center gap-4">
-      <div
-        class="w-3 h-3 bg-primary rounded-full animate-pulse shadow-[0_0_8px_rgba(99,102,241,0.6)]"
-      ></div>
-      <p class="text-on-surface font-medium status-glow" id="status-text">
-        System Ready. Select an application to begin.
-      </p>
-    </div>
-    <div class="text-on-surface-variant text-sm font-mono" id="clock-display">
-      09:41 AM — ONLINE
-    </div>
-  </div>
-  <!-- App Grid (Balanced 4x4 Grid) -->
+<div x-data="appComponent" x-cloak>
   <div
-    class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 auto-rows-[160px]"
+    x-show="isLoading"
+    x-transition.opacity
+    class="fixed inset-0 z-50 flex items-center justify-center bg-black/20 backdrop-blur-sm"
   >
-    %s
+    <div class="neo-raised p-8 rounded-2xl flex flex-col items-center gap-4">
+      <div
+        class="w-12 h-12 border-4 border-indigo-500 border-t-transparent rounded-full animate-spin"
+      ></div>
+      <p
+        class="text-on-surface font-bold"
+        x-text="'Launching ' + activeAppKey + '...'"
+      ></p>
+    </div>
   </div>
-</main>
 
+  <main class="flex-1 flex flex-col p-4 pr-6">
+    <!-- TopNavBar -->
+    <header
+      class="neo-raised rounded-xl p-4 mb-6 flex items-center justify-between"
+    >
+      <div class="flex items-center gap-4">
+        <span class="text-on-surface font-headline font-bold text-lg"
+          >App Index</span
+        >
+      </div>
+      <div class="flex items-center gap-6">
+        <div
+          class="neo-inset px-4 py-2 rounded-full flex items-center gap-2 w-64"
+        >
+          <span
+            class="material-symbols-outlined text-outline"
+            data-icon="search"
+            >search</span
+          >
+          <input
+            class="bg-transparent border-none focus:ring-0 text-sm text-on-surface w-full"
+            placeholder="Search applications..."
+            type="text"
+          />
+        </div>
+        <div class="flex gap-3">
+          <button
+            class="w-10 h-10 neo-raised rounded-full flex items-center justify-center text-on-surface-variant hover:text-primary"
+          >
+            <span class="material-symbols-outlined" data-icon="settings"
+              >settings</span
+            >
+          </button>
+          <button
+            class="w-10 h-10 neo-raised rounded-full flex items-center justify-center text-on-surface-variant hover:text-primary"
+          >
+            <span class="material-symbols-outlined" data-icon="account_circle"
+              >account_circle</span
+            >
+          </button>
+        </div>
+      </div>
+    </header>
+    <!-- Status Area -->
+    <div
+      class="neo-inset rounded-xl p-6 mb-8 flex items-center justify-between"
+    >
+      <div class="flex items-center gap-4">
+        <div
+          class="w-3 h-3 bg-primary rounded-full animate-pulse shadow-[0_0_8px_rgba(99,102,241,0.6)]"
+        ></div>
+        <p
+          class="text-on-surface font-medium status-glow"
+          id="status-text"
+          x-text="defaultAppKey ? 'Primary App: ' + defaultAppKey : 'System Ready. Select an application to begin.'"
+        >
+          System Ready. Select an application to begin.
+        </p>
+      </div>
+      <div class="text-on-surface-variant text-sm font-mono" id="clock-display">
+        09:41 AM — ONLINE
+      </div>
+    </div>
+
+    <div
+      class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 auto-rows-[160px]"
+    >
+      <template x-for="app in appList" :key="app.appKey">
+        <div
+          class="neo-raised neo-tile rounded-xl p-6 flex flex-col justify-between group cursor-pointer transition-all duration-300"
+          :class="defaultAppKey === app.appKey ? 'border-2 border-indigo-400' : ''"
+          @click="launchApp(app)"
+        >
+          <div class="flex justify-between items-start">
+            <span
+              class="material-symbols-outlined text-4xl text-indigo-500"
+              x-text="app.icon"
+            ></span>
+            <button
+              class="neo-raised neo-button text-[10px] font-bold px-2 py-1 rounded"
+              @click.stop="setDefaultApp(app.appKey)"
+            >
+              <span
+                x-text="defaultAppKey === app.appKey ? 'DEFAULT' : 'SET DEFAULT'"
+              ></span>
+            </button>
+          </div>
+          <div>
+            <h3
+              class="text-on-surface font-semibold text-lg"
+              x-text="app.appName"
+            ></h3>
+            <p
+              class="text-on-surface-variant text-sm"
+              x-text="app.appKey"
+            ></p>
+            <p
+              class="text-on-surface-variant text-xs"
+              x-text="app.description"
+            ></p>
+          </div>
+        </div>
+      </template>
+    </div>
+  </main>
+</div>

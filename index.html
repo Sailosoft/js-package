@@ -4,33 +4,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>React + TS + Tailwind (SystemJS)</title>
 
+    <script>
+      window.tailwind = {
+        config: {
+          important: ".tw-scope",
+          corePlugins: {
+            preflight: false,
+          },
+        },
+      };
+    </script>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <!-- <script src="assets/scripts/tailwind.js"></script> -->
-
-    <script
+    <!-- <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
+    ></script> -->
+    <!-- <script
       type="systemjs-importmap"
       src="dependencies/react-projects/react-19.json"
-    ></script>
-
+    ></script> -->
+    <!-- 
     <link rel="modulepreload" href="https://esm.sh/react@19" />
     <link
       rel="modulepreload"
       href="https://esm.sh/react-dom@19/client?deps=react@19"
-    />
+    /> -->
     <script src="assets/scripts/system.min.js"></script>
     <script src="assets/scripts/systemjs-babel.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/systemjs/dist/extras/global.min.js"></script>
   </head>
   <body>
     <div id="app">
-      <div
-        class="flex flex-col items-center justify-center min-h-screen space-y-4"
-      >
+      <div class="tw-scope">
         <div
-          class="w-12 h-12 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"
-        ></div>
-        <p class="text-slate-400 font-medium animate-pulse">
-          Initializing ESM Modules...
-        </p>
+          class="flex flex-col items-center justify-center min-h-screen space-y-4"
+        >
+          <div
+            class="w-12 h-12 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"
+          ></div>
+          <p class="text-slate-400 font-medium animate-pulse">
+            Initializing ESM Modules...
+          </p>
+        </div>
       </div>
     </div>
     <script>
@@ -39,10 +55,8 @@
       const defaultApp = localStorage.getItem(DEFAULT_APP);
 
       if (defaultApp) {
-        
       }
 
-      
       // const queryString = window.location.search;
 
       // // 2. Initialize URLSearchParams
@@ -52,14 +66,10 @@
       // const name = urlParams.get("name"); // "Gemini"
       // const mode = urlParams.get("mode"); // "dark"
 
-      fetch("./src/html/main/main.html")
-        .then((response) => response.text())
-        .then((html) => {
-          // Select the element in your main HTML where you want to place it
-          document.getElementById("app").innerHTML = html;
-        })
-        .catch((err) => console.error("Failed to load HTML:", err));
-      System.import("./src/html/main/main.js");
+      System.import("./src/html/main/main.js").then(() => {
+        System.import("./src/html/main/main.fab.js")
+      });
+      
 
       // System.import("./src/react/main/App.tsx")
       //   .then(() => {
