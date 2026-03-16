@@ -1,0 +1,7 @@
+{
+  "imports": {
+    "vue": "https://esm.sh/vue@3/dist/vue.esm-browser.js",
+    "vue-router": "https://esm.sh/vue-router@4/dist/vue-router.esm-browser.js",
+    "vue3-sfc-loader": "https://cdn.jsdelivr.net/npm/vue3-sfc-loader@0.8.4/dist/vue3-sfc-loader.esm.js"
+  }
+}

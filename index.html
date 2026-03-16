@@ -4,7 +4,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>React + TS + Tailwind (SystemJS)</title>
 
-    <script>
+    <!-- <script>
       window.tailwind = {
         config: {
           important: ".tw-scope",
@@ -14,7 +14,7 @@
         },
       };
     </script>
-    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script> -->
     <!-- <script src="assets/scripts/tailwind.js"></script> -->
     <!-- <script
       defer
@@ -30,22 +30,26 @@
       rel="modulepreload"
       href="https://esm.sh/react-dom@19/client?deps=react@19"
     /> -->
+    <link rel="stylesheet" href="./main.css" />
     <script src="assets/scripts/system.min.js"></script>
     <script src="assets/scripts/systemjs-babel.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/systemjs/dist/extras/global.min.js"></script>
   </head>
   <body>
     <div id="app">
-      <div class="tw-scope">
-        <div
-          class="flex flex-col items-center justify-center min-h-screen space-y-4"
-        >
-          <div
-            class="w-12 h-12 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"
-          ></div>
-          <p class="text-slate-400 font-medium animate-pulse">
-            Initializing ESM Modules...
-          </p>
+      <div id="loading-overlay" class="_main-loader-screen">
+        <div class="_main-loader-content">
+          <h1 class="_main-title">App Index</h1>
+
+          <div class="_main-visual-wrapper">
+            <div class="_main-glown-ring"></div>
+            <div class="_main-red-spinner"></div>
+          </div>
+
+          <div class="_main-status-container">
+            <p class="_main-status-text">LOADING ESM MODULE</p>
+            <div class="_main-subtext">ESTABLISHING APPLICATION</div>
+          </div>
         </div>
       </div>
     </div>
@@ -67,9 +71,8 @@
       // const mode = urlParams.get("mode"); // "dark"
 
       System.import("./src/html/main/main.js").then(() => {
-        System.import("./src/html/main/main.fab.js")
+        System.import("./src/html/main/main.fab.js");
       });
-      
 
       // System.import("./src/react/main/App.tsx")
       //   .then(() => {

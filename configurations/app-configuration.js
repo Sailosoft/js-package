@@ -1,24 +1,20 @@
+import { loadScript } from "../src/utils/loader/loader.script.js";
+import { loadTailwind } from "../src/utils/loader/loader.tailwind.js";
+
 export const appConfiguration = {
   apps: [
     {
-      appName: "React App",
-      appKey: "react-app",
+      appName: "React App Template",
+      appKey: "react-app-template",
       icon: "code",
-      description: "FirstReact Application",
+      description:
+        "React Template Application with Tailwind, React Router and more",
       async run() {
-        console.log("Attempt to run")
+        console.log("Attempt to run");
         if (!window.tailwind) {
-          window.tailwind = {
-            config: {
-              important: ".tw-scope", // Re-apply your scope
-              corePlugins: {
-                preflight: false,
-              },
-            },
-          };
-          loadScript(
-            "https://cdn.tailwindcss.com?plugins=forms,container-queries",
-          );
+          console.log("Tailwind not found, loading...");
+          await loadTailwind();
+          console.log("Tailwind loaded successfully.");
         }
 
         console.log("Loading React App...");
@@ -33,26 +29,28 @@ export const appConfiguration = {
         });
       },
     },
+    {
+      appName: "Vue App Template",
+      appKey: "vue-app-template",
+      icon: "code",
+      description:
+        "Vue Template Application with Tailwind, Vue Router and more",
+      async run() {
+        const devtoolsUrl = "https://virtual/vue-devtools-api";
+        System.set(devtoolsUrl, {
+          setupDevtoolsPlugin: () => {},
+        });
+
+        console.log("Mock registered.");
+        console.log("Attempt to run Vue App");
+        await loadScript(
+          "dependencies/vue-projects/vue-esm.json",
+          "systemjs-importmap",
+        );
+        System.import("./src/vue/template-v1/template-v1.js").then((module) => {
+          console.log("Successfully loaded");
+        });
+      },
+    },
   ],
 };
-export async function loadScript(src, type) {
-  if (type === "systemjs-importmap") {
-    // 1. Fetch the JSON file manually
-    const response = await fetch(src);
-
-    const map = await response.json();
-
-    System.addImportMap(map);
-    return Promise.resolve();
-  }
-
-  // Standard script loading for .js files
-  return new Promise((resolve, reject) => {
-    const script = document.createElement("script");
-    script.src = src;
-    script.type = type;
-    script.onload = resolve;
-    script.onerror = reject;
-    document.head.appendChild(script);
-  });
-}

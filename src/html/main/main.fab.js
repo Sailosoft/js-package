@@ -32,7 +32,7 @@ const FabMenu = {
             width: 40px;
             height: 40px;
             border-radius: 50%;
-            background: #007bff;
+            background: #818cf8;
             color: white;
             border: none;
             box-shadow: 0 4px 12px rgba(0,0,0,0.2);
@@ -66,7 +66,7 @@ const FabMenu = {
 
         .custom-fab-main.active { 
             transform: rotate(45deg); 
-            background: #dc3545; 
+            background: #4b4b55; 
         }
         
         .custom-fab-menu {
