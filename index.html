@@ -1,10 +1,11 @@
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>React + TS + Tailwind (SystemJS)</title>
 
-    <!-- <script>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>React + TS + Tailwind (SystemJS)</title>
+
+  <!-- <script>
       window.tailwind = {
         config: {
           important: ".tw-scope",
@@ -15,81 +16,104 @@
       };
     </script>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script> -->
-    <!-- <script src="assets/scripts/tailwind.js"></script> -->
-    <!-- <script
+  <!-- <script src="assets/scripts/tailwind.js"></script> -->
+  <!-- <script
       defer
       src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
     ></script> -->
-    <!-- <script
+  <!-- <script
       type="systemjs-importmap"
       src="dependencies/react-projects/react-19.json"
     ></script> -->
-    <!-- 
+  <!-- 
     <link rel="modulepreload" href="https://esm.sh/react@19" />
     <link
       rel="modulepreload"
       href="https://esm.sh/react-dom@19/client?deps=react@19"
     /> -->
-    <link rel="stylesheet" href="./main.css" />
-    <script src="assets/scripts/system.min.js"></script>
-    <script src="assets/scripts/systemjs-babel.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/systemjs/dist/extras/global.min.js"></script>
-  </head>
-  <body>
-    <div id="app">
-      <div id="loading-overlay" class="_main-loader-screen">
-        <div class="_main-loader-content">
-          <h1 class="_main-title">App Index</h1>
+  <link rel="stylesheet" href="./main.css" />
+  <script src="assets/scripts/system.min.js"></script>
+  <script>
+    (function () {
+      const originalFetch = System.constructor.prototype.fetch;
 
-          <div class="_main-visual-wrapper">
-            <div class="_main-glown-ring"></div>
-            <div class="_main-red-spinner"></div>
-          </div>
+      System.constructor.prototype.fetch = function (url, options) {
+        // 1. Identify "External" or "Pre-compiled" sources
+        const isCDN = url.includes('cdnjs.cloudflare.com') ||
+          url.includes('cdn.jsdelivr.net') ||
+          url.includes('unpkg.com');
 
-          <div class="_main-status-container">
-            <p class="_main-status-text">LOADING ESM MODULE</p>
-            <div class="_main-subtext">ESTABLISHING APPLICATION</div>
-          </div>
+        if (isCDN) {
+          // Use native fetch directly. 
+          // Note: This assumes the CDN provides standard JS/ESM.
+          return fetch(url, options);
+        }
+
+        // 2. Fallback to Babel for everything else (Local files, JSX, etc.)
+        return originalFetch.apply(this, arguments);
+      };
+    })();
+  </script>
+  <script src="assets/scripts/systemjs-babel.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/systemjs/dist/extras/global.min.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <div id="loading-overlay" class="_main-loader-screen">
+      <div class="_main-loader-content">
+        <h1 class="_main-title">App Index</h1>
+
+        <div class="_main-visual-wrapper">
+          <div class="_main-glown-ring"></div>
+          <div class="_main-red-spinner"></div>
+        </div>
+
+        <div class="_main-status-container">
+          <p class="_main-status-text">LOADING ESM MODULE</p>
+          <div class="_main-subtext">ESTABLISHING APPLICATION</div>
         </div>
       </div>
     </div>
-    <script>
-      const DEFAULT_APP = "defaultApp";
+  </div>
+  <script>
+    const DEFAULT_APP = "defaultApp";
 
-      const defaultApp = localStorage.getItem(DEFAULT_APP);
+    const defaultApp = localStorage.getItem(DEFAULT_APP);
 
-      if (defaultApp) {
-      }
+    if (defaultApp) {
+    }
 
-      // const queryString = window.location.search;
+    // const queryString = window.location.search;
 
-      // // 2. Initialize URLSearchParams
-      // const urlParams = new URLSearchParams(queryString);
+    // // 2. Initialize URLSearchParams
+    // const urlParams = new URLSearchParams(queryString);
 
-      // // 3. Get specific values
-      // const name = urlParams.get("name"); // "Gemini"
-      // const mode = urlParams.get("mode"); // "dark"
+    // // 3. Get specific values
+    // const name = urlParams.get("name"); // "Gemini"
+    // const mode = urlParams.get("mode"); // "dark"
 
-      System.import("./src/html/main/main.js").then(() => {
-        System.import("./src/html/main/main.fab.js");
-      });
+    System.import("./src/html/main/main.js").then(() => {
+      System.import("./src/html/main/main.fab.js");
+    });
 
-      // System.import("./src/react/main/App.tsx")
-      //   .then(() => {
-      //     console.log("src/app.jsx loaded and executed successfully.");
-      //   })
-      //   .catch((err) => {
-      //     // Display error message on the page if loading fails
-      //     const root = document.getElementById("app");
-      //     if (root) {
-      //       root.innerHTML = `<div class="
-      //           <h2 class="text-xl font-bold mb-2">Failed to Load Application</h2>
-      //           <p>Check the console for details on the SystemJS/Babel error.</p>
-      //           <pre class="whitespace-pre-wrap text-sm mt-3">${err.message || err.stack || err}</pre>
-      //       </div>`;
-      //     }
-      //     console.error("Error loading App:", err);
-      //   });
-    </script>
-  </body>
+    // System.import("./src/react/main/App.tsx")
+    //   .then(() => {
+    //     console.log("src/app.jsx loaded and executed successfully.");
+    //   })
+    //   .catch((err) => {
+    //     // Display error message on the page if loading fails
+    //     const root = document.getElementById("app");
+    //     if (root) {
+    //       root.innerHTML = `<div class="
+    //           <h2 class="text-xl font-bold mb-2">Failed to Load Application</h2>
+    //           <p>Check the console for details on the SystemJS/Babel error.</p>
+    //           <pre class="whitespace-pre-wrap text-sm mt-3">${err.message || err.stack || err}</pre>
+    //       </div>`;
+    //     }
+    //     console.error("Error loading App:", err);
+    //   });
+  </script>
+</body>
+
 </html>

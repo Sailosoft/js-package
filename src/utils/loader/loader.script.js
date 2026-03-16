@@ -13,10 +13,8 @@ export async function loadScript(src, type) {
   return new Promise((resolve, reject) => {
     const script = document.createElement("script");
     script.src = src;
-    script.type = type;
     script.async = false; // Set a timeout - if it doesn't load in 10 seconds, fail it
-    script.charset = 'utf-8';
-    script.type = 'text/javascript';
+    script.type = type || "text/javascript";
     const timeout = setTimeout(() => {
       reject(new Error(`Script timeout: ${src}`));
     }, 10000);

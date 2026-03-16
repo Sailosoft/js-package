@@ -36,16 +36,6 @@ export const appConfiguration = {
       description:
         "Vue Template Application with Tailwind, Vue Router and more",
       async run() {
-        // ("https://unpkg.com/vue@latest",
-        //   "https://unpkg.com/vue-router@4",
-        //   "https://cdn.jsdelivr.net/npm/quasar@2.17.4/dist/quasar.umd.js",
-        //   "https://cdn.jsdelivr.net/npm/vue3-sfc-loader/dist/vue3-sfc-loader.js",
-        //   "https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js",
-        //   "https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js");
-        const devtoolsUrl = "https://virtual/vue-devtools-api";
-        System.set(devtoolsUrl, {
-          setupDevtoolsPlugin: () => {},
-        });
         console.log("attempt to load vue script");
         await Promise.all([
           loadScript("https://unpkg.com/vue@3/dist/vue.global.js"),
