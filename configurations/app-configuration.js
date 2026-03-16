@@ -63,6 +63,10 @@ export const appConfiguration = {
           },
         );
 
+        System.set("https://virtual/vue-devtools-api", {
+          setupDevtoolsPlugin: () => {},
+        });
+
         console.log("Mock registered.");
         console.log("Attempt to run Vue App");
         await loadScript(
