@@ -1,0 +1,14 @@
+{
+  "imports": {
+    "vue": "https://unpkg.com/vue@3/dist/vue.global.js",
+    "vue-router": "https://unpkg.com/vue-router@4",
+    "vue3-sfc-loader": "https://cdn.jsdelivr.net/npm/vue3-sfc-loader/dist/vue3-sfc-loader.js"
+  },
+  "test": {
+    "imports": {
+      "vue": "https://unpkg.com/vue@3/dist/vue.global.js",
+      "vue-router": "https://unpkg.com/vue-router@4",
+      "vue3-sfc-loader": "https://cdn.jsdelivr.net/npm/vue3-sfc-loader/dist/vue3-sfc-loader.js"
+    }
+  }
+}

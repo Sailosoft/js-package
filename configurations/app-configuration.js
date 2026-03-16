@@ -36,23 +36,47 @@ export const appConfiguration = {
       description:
         "Vue Template Application with Tailwind, Vue Router and more",
       async run() {
+        // ("https://unpkg.com/vue@latest",
+        //   "https://unpkg.com/vue-router@4",
+        //   "https://cdn.jsdelivr.net/npm/quasar@2.17.4/dist/quasar.umd.js",
+        //   "https://cdn.jsdelivr.net/npm/vue3-sfc-loader/dist/vue3-sfc-loader.js",
+        //   "https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js",
+        //   "https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js");
         const devtoolsUrl = "https://virtual/vue-devtools-api";
         System.set(devtoolsUrl, {
           setupDevtoolsPlugin: () => {},
         });
         console.log("attempt to load vue script");
-        await loadScript("https://unpkg.com/vue@3/dist/vue.global.js");
+        await Promise.all([
+          loadScript("https://unpkg.com/vue@3/dist/vue.global.js"),
+          loadScript("https://unpkg.com/vue-router@4"),
+          loadScript(
+            "https://cdn.jsdelivr.net/npm/vue3-sfc-loader/dist/vue3-sfc-loader.js",
+          ),
+        ]);
         console.log("Vue script loaded.");
-        console.log(window.Vue)
-        System.set(System.resolve("vue"), {
+        System.set("https://unpkg.com/vue@3/dist/vue.global.js", {
           default: window.Vue,
           ...window.Vue,
         });
 
+        System.set("https://unpkg.com/vue-router@4", {
+          default: window.VueRouter,
+          ...window.VueRouter,
+        });
+
+        System.set(
+          "https://cdn.jsdelivr.net/npm/vue3-sfc-loader/dist/vue3-sfc-loader.js",
+          {
+            default: window["vue3-sfc-loader"],
+            ...window["vue3-sfc-loader"],
+          },
+        );
+
         console.log("Mock registered.");
         console.log("Attempt to run Vue App");
         await loadScript(
-          "dependencies/vue-projects/vue-esm.json",
+          "dependencies/vue-projects/vue-local.json",
           "systemjs-importmap",
         );
         System.import("./src/vue/template-v1/template-v1.js").then((module) => {
