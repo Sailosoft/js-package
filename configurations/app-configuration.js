@@ -40,6 +40,14 @@ export const appConfiguration = {
         System.set(devtoolsUrl, {
           setupDevtoolsPlugin: () => {},
         });
+        console.log("attempt to load vue script");
+        await loadScript("https://unpkg.com/vue@3/dist/vue.global.js");
+        console.log("Vue script loaded.");
+        console.log(window.Vue)
+        System.set(System.resolve("vue"), {
+          default: window.Vue,
+          ...window.Vue,
+        });
 
         console.log("Mock registered.");
         console.log("Attempt to run Vue App");
