@@ -64,9 +64,7 @@ export const materialTemplateCDNConfiguration = {
     }
 
     try {
-      const module = await System.import(
-        "./src/react/template/material-template-cdn/src/App.tsx",
-      );
+      const module = await System.import("./src/react/tempo/src/App.tsx");
       console.log("Application Loaded:", module);
     } catch (err) {
       console.error("SystemJS Import Error:", err);
