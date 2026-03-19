@@ -17,7 +17,8 @@
       "react-dom/client": ["./types/react-dom/19/client/client.d.ts"],
       "estree": ["types/estree/estree.d.ts"],
       "react/jsx-runtime": ["./types/react/19/react.d.ts"],
-      "react-router-dom": ["./types/react-router-dom/local/react-router-dom.d.ts"]
+      "react-router-dom": ["./types/react-router-dom/local/react-router-dom.d.ts"],
+      "@mui/material": ["./types/@mui/material/latest/index.d.ts"],
     }
   },
   "include": ["src/**/*", "types/**/*", "types", "react/**/*"], 
