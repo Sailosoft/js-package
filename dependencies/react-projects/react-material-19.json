@@ -1,0 +1,9 @@
+{
+  "imports": {
+    "react": "https://esm.sh/react@latest",
+    "react-dom": "https://esm.sh/react-dom@latest",
+    "react-dom/client": "https://esm.sh/react-dom@latest/client",
+    "react/jsx-runtime": "https://esm.sh/react@latest/jsx-runtime",
+    "@mui/material": "https://esm.sh/@mui/material@latest?external=react,react-dom"
+  }
+}
