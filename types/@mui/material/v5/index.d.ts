@@ -117,6 +117,7 @@ declare module "@mui/material" {
         | "overline";
       align?: "left" | "center" | "right" | "justify";
       gutterBottom?: boolean;
+      color?: string;
     }
   >;
   const AppBar: React.FC<
@@ -165,7 +166,7 @@ declare module "@mui/material" {
   const colors: any;
   const SvgIcon: React.FC<BaseProps>;
   const Icon: React.FC<BaseProps>;
-  const Link: React.FC<BaseProps>;
+  const Link: React.FC<BaseProps & { href?: string; color?: string }>;
 }
 
 /**

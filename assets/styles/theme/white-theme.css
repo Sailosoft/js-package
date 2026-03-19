@@ -1,0 +1,102 @@
+/* Scoped Loader Container */
+._main-loader-screen {
+  position: fixed;
+  inset: 0;
+  /* Whiter Theme: Soft Grey to Clean White */
+  background: radial-gradient(circle at center, #ffffff 0%, #f8fafc 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 99999;
+  font-family: 'Segoe UI', Roboto, sans-serif;
+  overflow: hidden;
+}
+
+._main-loader-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Title Styling: Clean Indigo Slate */
+._main-title {
+  color: #1e1b4b; /* Deep Indigo-950 for contrast */
+  font-size: 2.2rem;
+  font-weight: 900;
+  letter-spacing: 0.4em;
+  margin-bottom: 60px;
+  text-transform: uppercase;
+  /* Subtle clean lift */
+  text-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+/* Spinner Wrapper: Neumorphic Light Well */
+._main-visual-wrapper {
+  position: relative;
+  width: 110px;
+  height: 110px;
+  margin-bottom: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Light theme inset shadow */
+  background: #ffffff;
+  box-shadow: inset 4px 4px 8px #e2e8f0, 
+              inset -4px -4px 8px #ffffff;
+}
+
+/* Static background ring */
+._main-glown-ring {
+  position: absolute;
+  width: 80%;
+  height: 80%;
+  border-radius: 50%;
+  border: 2px solid #f1f5f9;
+  box-sizing: border-box;
+}
+
+/* The Animated Spinner: Primary Indigo-600 */
+._main-red-spinner {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 3px solid transparent;
+  /* Indigo-600: #4f46e5 */
+  border-top: 3px solid #4f46e5;
+  border-right: 3px solid #4f46e5;
+  filter: drop-shadow(0 0 8px rgba(79, 70, 229, 0.3));
+  animation: _main-spin 1s cubic-bezier(0.5, 0.1, 0.4, 0.9) infinite;
+}
+
+/* Status Text: Indigo-400 */
+._main-status-text {
+  color: #818cf8; 
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  animation: _main-pulse 2s ease-in-out infinite;
+}
+
+/* Subtext: Soft Slate */
+._main-subtext {
+  color: #94a3b8;
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  margin-top: 12px;
+  text-transform: uppercase;
+}
+
+/* Centering-safe Animations */
+@keyframes _main-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes _main-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.7; transform: scale(0.98); }
+}
