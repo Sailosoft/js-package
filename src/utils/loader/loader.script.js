@@ -1,4 +1,5 @@
-export async function loadScript(src, type) {
+export async function loadScript(src, type, options = {}) {
+  const { crossorigin } = options;
   if (type === "systemjs-importmap") {
     // 1. Fetch the JSON file manually
     const response = await fetch(src);
@@ -16,6 +17,7 @@ export async function loadScript(src, type) {
     script.src = src;
     script.async = false; // Set a timeout - if it doesn't load in 10 seconds, fail it
     script.type = type || "text/javascript";
+    script.crossorigin = crossorigin;
     const timeout = setTimeout(() => {
       reject(new Error(`Script timeout: ${src}`));
     }, 10000);
