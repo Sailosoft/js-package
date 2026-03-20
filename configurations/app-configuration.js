@@ -1,5 +1,6 @@
 import { materialTemplateCDNConfiguration } from "../src/react/template/material-template-cdn/configuration.js";
 import { reactMaterialTemplateConfiguration } from "../src/react/template/material/configuration.js";
+import { reactTempoConfiguration } from "../src/react/tempo/configuration.js";
 import { loadScript } from "../src/utils/loader/loader.script.js";
 import { loadTailwind } from "../src/utils/loader/loader.tailwind.js";
 
@@ -82,5 +83,6 @@ export const appConfiguration = {
     },
     reactMaterialTemplateConfiguration,
     materialTemplateCDNConfiguration,
+    reactTempoConfiguration,
   ],
 };

@@ -1,15 +1,10 @@
-import {
-  loadImportMap,
-  loadScript,
-  loadTSX,
-} from "../../../utils/loader/loader.script.js";
+import { loadScript } from "../../utils/loader/loader.script.js";
 
-export const materialTemplateCDNConfiguration = {
-  appName: "React Material Template CDN",
-  appKey: "react-material-template-cdn",
+export const reactTempoConfiguration = {
+  appName: "Tempo Project",
+  appKey: "react-tempo",
   icon: "code",
-  description:
-    "React Material Template Application with Tailwind, React Router and more",
+  description: "Tempo Project",
   async run() {
     const scripts = [
       {
@@ -41,7 +36,15 @@ export const materialTemplateCDNConfiguration = {
       },
     ];
 
+    //   <script src="https://cdn.jsdelivr.net/npm/ag-grid-react@31.3.2/dist/ag-grid-react.min.js"></script>
+    // <script src="https://cdn.jsdelivr.net/npm/ag-grid-community@31.3.2/dist/ag-grid-community.min.js"></script>
     // 2. Load the scripts (Your existing loop)
+    await Promise.all([
+      loadScript(
+        "https://cdn.jsdelivr.net/npm/ag-grid-community/dist/ag-grid-community.min.js",
+      ),
+    ]);
+    console.log(window);
     await Promise.all(
       scripts.map((script) =>
         loadScript(script.url, undefined, {
@@ -50,10 +53,10 @@ export const materialTemplateCDNConfiguration = {
       ),
     );
 
-    await loadScript(
-      "dependencies/react-projects/react-material-virtual.json",
-      "systemjs-importmap",
-    );
+    // await loadScript(
+    //   "dependencies/react-projects/react-material-virtual.json",
+    //   "systemjs-importmap",
+    // );
 
     for (const script of scripts) {
       const obj = globalThis[script.object];
