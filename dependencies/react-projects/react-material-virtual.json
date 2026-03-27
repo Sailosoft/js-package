@@ -1,0 +1,8 @@
+{
+  "imports": {
+    "react": "https://virtual-react",
+    "react-dom/client": "https://virtual-react-dom",
+    "@mui/material": "https://virtual-mui-material",
+    "react-router-dom": "https://virtual-react-router-dom"
+  }
+}
