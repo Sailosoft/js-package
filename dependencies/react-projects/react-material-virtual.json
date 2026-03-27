@@ -3,7 +3,6 @@
     "react": "https://virtual-react",
     "react-dom/client": "https://virtual-react-dom",
     "@mui/material": "https://virtual-mui-material",
-    "@mui/icons-material": "https://virtual-mui-icons-material",
     "react-router-dom": "https://virtual-react-router-dom"
   }
 }

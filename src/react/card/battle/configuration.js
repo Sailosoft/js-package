@@ -30,13 +30,6 @@ export const reactCardBattleConfiguration = {
         crossorigin: true,
       },
       {
-        name: "@mui/icons-material",
-        object: "MaterialUIIcons",
-        url: "https://unpkg.com/@mui/icons-material@5/umd/material-ui-icons.development.js",
-        esm: "https://virtual-mui-icons-material",
-        crossorigin: true,
-      },
-      {
         name: "react-router-dom",
         object: "ReactRouterDOM",
         esm: "https://virtual-react-router-dom",

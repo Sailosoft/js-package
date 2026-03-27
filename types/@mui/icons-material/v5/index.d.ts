@@ -1,12 +1,15 @@
 import { SvgIconProps } from "@mui/material";
 import { ComponentType } from "react";
 
-declare module "https://virtual-mui-icons-material" {
-  export type IconComponent = ComponentType<SvgIconProps>;
+/**
+ * Shared type for all Material Icons
+ */
+export type IconComponent = ComponentType<SvgIconProps>;
 
+declare module "@mui/icons-material" {
   /**
    * 1. EXPLICIT DEFAULTS
-   * Add icons here to get IDE recommendations/autocomplete.
+   * Icons added here will appear in IDE autocomplete/suggestions.
    */
   export const Add: IconComponent;
   export const Close: IconComponent;
@@ -20,17 +23,26 @@ declare module "https://virtual-mui-icons-material" {
   export const DeleteSweep: IconComponent;
   export const Style: IconComponent;
 
-  // Allows: import Icons from "@mui/icons-material"
+  /**
+   * 2. THE DYNAMIC FALLBACK
+   * This index signature tells TS: "This module has any named export you want."
+   * It eliminates the ts(2614) error for any icon not listed above.
+   */
+  // export const [key: string]: any;
+
+  /**
+   * 3. DEFAULT EXPORT
+   * Supports: import Icons from "@mui/icons-material"
+   */
   const Icons: Record<string, IconComponent>;
   export default Icons;
 }
 
-// Map the package name to the virtual URL
-declare module "@mui/icons-material" {
-  export * from "https://virtual-mui-icons-material";
-  
-  // This line is the "magic" that allows any string import 
-  // from @mui/icons-material specifically.
-  import * as AllIcons from "https://virtual-mui-icons-material";
+/**
+ * Map the virtual SystemJS URL to the definitions above
+ */
+declare module "https://virtual-mui-icons-material" {
+  export * from "@mui/icons-material";
+  import * as AllIcons from "@mui/icons-material";
   export default AllIcons;
 }

@@ -20,8 +20,7 @@
       "react-router-dom": [
         "./types/react-router-dom/local/react-router-dom.d.ts"
       ],
-      "@mui/material": ["./types/@mui/material/v5/index.d.ts"],
-      "@mui/icons-material": ["./types/@mui/icons-material/v5/index.d.ts"]
+      "@mui/material": ["./types/@mui/material/v5/index.d.ts"]
     }
   },
   "include": ["src/**/*", "types/**/*", "types", "react/**/*"]

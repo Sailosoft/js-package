@@ -46,6 +46,8 @@ declare module "@mui/material" {
       xs?: number | "auto";
       md?: number;
       lg?: number;
+      alignItems?: "flex-start" | "center" | "flex-end" | "stretch";
+      justifyContent? = "flex-start" | "center" | "flex-end" | "space-between" | "space-around";
     }
   >;
 
@@ -65,6 +67,7 @@ declare module "@mui/material" {
       direction?: ResponsiveValue<
         "row" | "row-reverse" | "column" | "column-reverse"
       >;
+      justifyContent?: "flex-start" | "center" | "flex-end" | "space-between" | "space-around";
       spacing?: ResponsiveValue<number | string>;
     }
   >;
@@ -78,6 +81,8 @@ declare module "@mui/material" {
       disabled?: boolean;
       onClick?: (e: any) => void;
       to?: string;
+      fullWidth?: boolean;
+      startIcon?: ReactNode;
     }
   >;
   const TextField: React.FC<
@@ -118,6 +123,8 @@ declare module "@mui/material" {
       align?: "left" | "center" | "right" | "justify";
       gutterBottom?: boolean;
       color?: string;
+      display?: "initial" | "block" | "inline";
+      textAlign?: "left" | "center" | "right" | "justify";
     }
   >;
   const AppBar: React.FC<
@@ -156,7 +163,7 @@ declare module "@mui/material" {
   const Card: React.FC<BaseProps>;
   const CardContent: React.FC<BaseProps>;
   const CardActions: React.FC<BaseProps>;
-  const Paper: React.FC<BaseProps & { elevation?: number }>;
+  const Paper: React.FC<BaseProps & { elevation?: number; onClick?: (e: any) => void }>;
   const AppBar: React.FC<
     BaseProps & {
       position?: "fixed" | "absolute" | "sticky" | "static" | "relative";
