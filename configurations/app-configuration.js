@@ -1,3 +1,4 @@
+import { reactCardBattleConfiguration } from "../src/react/card/battle/configuration.js";
 import { materialTemplateCDNConfiguration } from "../src/react/template/material-template-cdn/configuration.js";
 import { reactMaterialTemplateConfiguration } from "../src/react/template/material/configuration.js";
 import { loadScript } from "../src/utils/loader/loader.script.js";
@@ -82,5 +83,6 @@ export const appConfiguration = {
     },
     reactMaterialTemplateConfiguration,
     materialTemplateCDNConfiguration,
+    reactCardBattleConfiguration
   ],
 };
