@@ -7,7 +7,6 @@ import { HashRouter, Link, Route, Routes } from 'react-router-dom';
 const { useState } = React
 console.log(React)
 console.log(useState)
-Material.Card
 const Home = () => <div className="p-4 text-green-400">Home Page</div>;
 const About = () => <div className="p-4 text-blue-400">About Page</div>;
 
