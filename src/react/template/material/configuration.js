@@ -4,8 +4,6 @@ import {
   loadTSX,
 } from "../../../utils/loader/loader.script.js";
 
-import * as ReactModule from "https://esm.sh/react@latest";
-
 export const reactMaterialTemplateConfiguration = {
   appName: "React Material Template",
   appKey: "react-material-template",
