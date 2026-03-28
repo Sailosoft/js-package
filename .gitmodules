@@ -1,0 +1,3 @@
+[submodule "modules/korevel"]
+	path = modules/korevel
+	url = https://github.com/Sailosoft/Korevel-Package.git
