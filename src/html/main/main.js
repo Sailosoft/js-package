@@ -1,6 +1,4 @@
-import {
-  appConfiguration
-} from "../../../configurations/app-configuration.js";
+import { appConfiguration } from "../../../configurations/app-configuration.js";
 import { loadTailwind } from "../../utils/loader/loader.tailwind.js";
 import FabMenu from "./main.fab.js";
 
@@ -21,9 +19,9 @@ import FabMenu from "./main.fab.js";
   const init = async () => {
     try {
       // 1. Fetch HTML and Alpine Module in parallel for better performance
-      loadTailwind(); // Ensure Tailwind is loaded before fetching HTML that may depend on it
+      // loadTailwind(); // Ensure Tailwind is loaded before fetching HTML that may depend on it
       const [htmlResponse, { Alpine }] = await Promise.all([
-        fetch("./src/html/main/main.html"),
+        fetch("./src/html/main/main.adm.html"),
         System.import(
           "https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/module.esm.js",
         ),
@@ -37,7 +35,10 @@ import FabMenu from "./main.fab.js";
         appList: [],
         isLoading: false,
         activeAppKey: "",
-        currentTime: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
+        currentTime: new Date().toLocaleTimeString([], {
+          hour: "2-digit",
+          minute: "2-digit",
+        }),
         defaultAppKey: localStorage.getItem(STORAGE_KEY) || "",
 
         init() {
@@ -47,7 +48,7 @@ import FabMenu from "./main.fab.js";
 
         launchApp(app) {
           // Clean up global tailwind if present
-          delete window.tailwind;
+          // delete window.tailwind;
 
           this.activeAppKey = app.appKey;
           this.isLoading = true;

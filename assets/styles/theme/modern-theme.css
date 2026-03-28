@@ -1,0 +1,93 @@
+/* Scoped Loader Container */
+._main-loader-screen {
+  position: fixed;
+  inset: 0;
+  background-color: #0a0a0a; /* Matches your adm-bg */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999999;
+  font-family: 'Inter', system-ui, sans-serif;
+  overflow: hidden;
+}
+
+._main-loader-content {
+  width: 100%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+}
+
+/* Title: Now Sleek & Silver */
+._main-title {
+  color: #fafafa;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  margin-bottom: 40px;
+  text-transform: uppercase;
+  font-family: 'Orbitron', sans-serif; /* Using your tech font */
+}
+
+/* Replacement for the Spinner: Minimalist Progress Line */
+._main-visual-wrapper {
+  position: relative;
+  width: 100%;
+  height: 1px; /* Ultra thin line */
+  background: rgba(255, 255, 255, 0.05);
+  margin-bottom: 24px;
+  overflow: hidden;
+  border-radius: 2px;
+}
+
+/* The Animated Progress: Silver/White */
+._main-red-spinner {
+  position: absolute;
+  width: 40%;
+  height: 100%;
+  background: #ffffff;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+  animation: _main-slide 1.5s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+}
+
+/* Glown Ring: Now a subtle ambient background glow */
+._main-glown-ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(255,255,255,0.03) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+/* Status Text: Monospaced & Muted */
+._main-status-container {
+    text-align: center;
+}
+
+._main-status-text {
+  color: #a1a1a1; /* adm-text-muted */
+  font-family: 'Courier New', monospace;
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+._main-subtext {
+  color: #444; /* Very dark silver */
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  margin-top: 8px;
+  text-transform: uppercase;
+}
+
+/* Animations */
+@keyframes _main-slide {
+  from { left: -50%; }
+  to { left: 110%; }
+}

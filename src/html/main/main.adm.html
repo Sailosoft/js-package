@@ -1,0 +1,41 @@
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@300" rel="stylesheet" />
+
+<div x-data="appComponent" x-cloak>
+    <div class="adm_main_wrapper">
+
+        <header class="adm_header_nav">
+            <div class="adm_brand_label">Nitro</div>
+            <div class="adm_search_container">
+                <span class="material-symbols-outlined" style="font-size: 18px; color: #666;">search</span>
+                <input type="text" class="adm_search_input" placeholder="Search resources...">
+            </div>
+            <div style="display:flex; gap: 1rem;">
+                <span class="material-symbols-outlined" style="color: #666; cursor: pointer;">apps</span>
+                <span class="material-symbols-outlined" style="color: #666; cursor: pointer;">settings</span>
+            </div>
+        </header>
+
+        <div class="adm_grid_layout">
+            <template x-for="app in appList" :key="app.appKey">
+                <div class="adm_card_item" :class="defaultAppKey === app.appKey ? 'adm_is_default' : ''"
+                    @click="launchApp(app)">
+
+                    <div style="display:flex; justify-content: space-between; align-items: center;">
+                        <div class="adm_icon_box">
+                            <span class="material-symbols-outlined" x-text="app.icon"></span>
+                        </div>
+                        <button class="adm_btn_toggle" @click.stop="setDefaultApp(app.appKey)"
+                            x-text="defaultAppKey === app.appKey ? 'Primary' : 'Set Default'"></button>
+                    </div>
+
+                    <div>
+                        <div class="adm_app_title" x-text="app.appName"></div>
+                        <div style="font-size: 11px; font-family: monospace; color: #444; margin: 4px 0 12px 0;"
+                            x-text="app.appKey"></div>
+                        <div class="adm_app_desc" x-text="app.description"></div>
+                    </div>
+                </div>
+            </template>
+        </div>
+    </div>
+</div>

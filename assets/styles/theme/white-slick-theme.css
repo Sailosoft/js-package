@@ -1,0 +1,100 @@
+/* Scoped Loader Container - White Version */
+._main-loader-screen {
+  position: fixed;
+  inset: 0;
+  /* Soft pearl-to-white gradient */
+  background: radial-gradient(circle at center, #ffffff 0%, #f1f5f9 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999999;
+  font-family: 'Inter', system-ui, sans-serif;
+  overflow: hidden;
+}
+
+._main-loader-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Title: Now Sleek Slate-900 */
+._main-title {
+  color: #0f172a;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.4em;
+  margin-bottom: 50px;
+  text-transform: uppercase;
+  font-family: 'Orbitron', sans-serif; /* Keep the tech font for branding */
+}
+
+/* Circular Wrapper */
+._main-visual-wrapper {
+  position: relative;
+  width: 90px;
+  height: 90px;
+  margin-bottom: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Static background ring: Very faint silver */
+._main-static-ring {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 1.5px solid rgba(15, 23, 42, 0.05); /* Soft Slate Line */
+}
+
+/* The Active Spinner: Crisp Primary Blue/Slate */
+._main-active-spinner {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 1.5px solid transparent;
+  /* Trend: Hairline spinner with a clean primary color */
+  border-top: 1.5px solid #0f172a; 
+  animation: _main-spin 0.8s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+/* Status Text: Clean Slate */
+._main-status-container {
+  text-align: center;
+}
+
+._main-status-text {
+  color: #64748b; /* Slate-500 */
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-family: 'Inter', sans-serif;
+}
+
+._main-subtext {
+  color: #94a3b8;
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  margin-top: 8px;
+  text-transform: uppercase;
+}
+
+/* Background ambient glow (Optional) */
+._main-ambient-glow {
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(15, 23, 42, 0.02) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+/* Perfectly Centered Spin */
+@keyframes _main-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}

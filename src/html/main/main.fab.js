@@ -14,91 +14,95 @@ const FabMenu = {
     style.textContent = `
         .custom-fab-container {
             position: fixed;
-            bottom: 20px;
-            left: 20px;
+            bottom: 30px;
+            left: 30px;
             z-index: 999999;
             display: flex;
             flex-direction: column-reverse;
             align-items: flex-start;
-            font-family: -apple-system, system-ui, sans-serif;
+            font-family: 'Inter', system-ui, sans-serif;
             margin: 0; padding: 0; box-sizing: border-box;
         }
 
-        .custom-fab-container *, .custom-fab-container *::before, .custom-fab-container *::after {
-            box-sizing: border-box;
-        }
-
         .custom-fab-main {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: #818cf8;
-            color: white;
-            border: none;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            width: 48px;
+            height: 48px;
+            border-radius: 12px; /* Matching the 12px card radius */
+            background: #1a1a1a; /* Slate Surface */
+            color: #ffffff;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.4);
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            padding: 0; /* Critical reset */
+            transition: all 0.3s cubic-bezier(0.2, 0, 0, 1);
+            padding: 0;
             margin: 0;
-            overflow: hidden;
         }
 
-        /* Using a CSS-drawn plus for perfect centering */
+        .custom-fab-main:hover {
+            background: #252525;
+            border-color: rgba(255, 255, 255, 0.2);
+            transform: scale(1.05);
+        }
+
+        /* Minimalist "X" / "+" transition */
         .fab-icon-plus {
             position: relative;
-            width: 20px;
-            height: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            width: 16px;
+            height: 16px;
+            transition: transform 0.3s ease;
         }
         .fab-icon-plus::before, .fab-icon-plus::after {
             content: '';
             position: absolute;
             background: currentColor;
-            border-radius: 2px;
+            border-radius: 1px;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
         }
-        .fab-icon-plus::before { width: 100%; height: 2px; }
-        .fab-icon-plus::after { width: 2px; height: 100%; }
+        .fab-icon-plus::before { width: 100%; height: 1.5px; }
+        .fab-icon-plus::after { width: 1.5px; height: 100%; }
 
-        .custom-fab-main.active { 
-            transform: rotate(45deg); 
-            background: #4b4b55; 
+        .custom-fab-main.active .fab-icon-plus {
+            transform: rotate(135deg); /* Smoother turn to 'X' */
         }
         
         .custom-fab-menu {
             display: none;
             flex-direction: column-reverse;
-            margin-bottom: 15px;
-            gap: 10px;
-            padding: 0;
-            margin-left: 0;
+            margin-bottom: 12px;
+            gap: 8px;
         }
 
         .custom-fab-menu.show { display: flex; }
         
         .custom-fab-item {
-            padding: 10px 18px;
-            background: white;
-            border: 1px solid #ddd;
-            border-radius: 20px;
+            padding: 8px 16px;
+            background: rgba(20, 20, 20, 0.8); /* Glassmorphism */
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 8px;
             cursor: pointer;
             white-space: nowrap;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-            font-size: 14px;
+            font-size: 13px;
             font-weight: 500;
-            color: #333;
+            color: #a1a1a1; /* Matches adm-text-muted */
             transition: all 0.2s;
-            line-height: 1.4;
+            animation: fabSlideIn 0.3s ease forwards;
+        }
+
+        @keyframes fabSlideIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .custom-fab-item:hover { 
-            background: #f8f9fa; 
-            transform: translateX(5px);
-            border-color: #007bff;
+            background: #ffffff; 
+            color: #000000;
+            border-color: #ffffff;
+            transform: translateX(4px);
         }
     `;
     document.head.appendChild(style);
@@ -114,8 +118,8 @@ const FabMenu = {
 
     this._mainBtn = document.createElement("button");
     this._mainBtn.className = "custom-fab-main";
-    this._mainBtn.setAttribute('type', 'button');
-    
+    this._mainBtn.setAttribute("type", "button");
+
     // Create a perfectly centered plus icon using CSS bars
     const icon = document.createElement("div");
     icon.className = "fab-icon-plus";
@@ -160,7 +164,7 @@ const FabMenu = {
       this.close();
     };
     this._menu.appendChild(item);
-  }
+  },
 };
 
 export default FabMenu;
