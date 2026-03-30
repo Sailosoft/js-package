@@ -146,6 +146,17 @@ declare module "@mui/material" {
   const List: React.FC<BaseProps>;
   const ListItem: React.FC<BaseProps>;
   const ListItemText: React.FC<{ primary?: ReactNode; secondary?: ReactNode }>;
+  const ListItemButton: React.FC<
+    BaseProps & { 
+      onClick?: (e: any) => void; 
+      selected?: boolean; 
+      disabled?: boolean;
+      divider?: boolean;
+      to?: string; 
+      component?: any; 
+    }
+  >;
+  const ListItemIcon: React.FC<BaseProps>;
   const Tooltip: React.FC<{ title: ReactNode; children: React.ReactElement }>;
 
   // --- Feedback ---
@@ -174,40 +185,57 @@ declare module "@mui/material" {
   const SvgIcon: React.FC<BaseProps>;
   const Icon: React.FC<BaseProps>;
   const Link: React.FC<BaseProps & { href?: string; color?: string }>;
+  const IconButton: React.FC<BaseProps & { onClick?: (e: any) => any; size?: "small" | "medium" | "large"; edge?: "start" | "end" | false; color?: string; }>;
+
+  const Drawer: React.FC<
+    BaseProps & {
+      anchor?: "left" | "top" | "right" | "bottom";
+      open?: boolean;
+      onClose?: () => void;
+      variant?: "permanent" | "persistent" | "temporary";
+      elevation?: number;
+      PaperProps?: Partial<BaseProps>;
+      ModalProps?: any;
+    }
+  >;
+
+  const Divider: React.FC<BaseProps>;
 }
 
 /**
  * Destructure the global window object for easy access
  */
-declare const {
-  Button,
-  Typography,
-  Box,
-  Container,
-  Grid,
-  Grid2,
-  Stack,
-  TextField,
-  Checkbox,
-  Radio,
-  Select,
-  Switch,
-  Avatar,
-  Badge,
-  Chip,
-  List,
-  ListItem,
-  ListItemText,
-  Tooltip,
-  Alert,
-  CircularProgress,
-  Snackbar,
-  Card,
-  CardContent,
-  CardActions,
-  Paper,
-  AppBar,
-  createTheme,
-  ThemeProvider,
-  CssBaseline,
-}: typeof MaterialUI;
+// declare const {
+//   Button,
+//   Typography,
+//   Box,
+//   Container,
+//   Grid,
+//   Grid2,
+//   Stack,
+//   TextField,
+//   Checkbox,
+//   Radio,
+//   Select,
+//   Switch,
+//   Avatar,
+//   Badge,
+//   Chip,
+//   List,
+//   ListItem,
+//   ListItemText,
+//   Tooltip,
+//   Alert,
+//   CircularProgress,
+//   Snackbar,
+//   Card,
+//   CardContent,
+//   CardActions,
+//   Paper,
+//   AppBar,
+//   createTheme,
+//   ThemeProvider,
+//   CssBaseline,
+//   IconButton,
+//   Drawer,
+// }: typeof MaterialUI;

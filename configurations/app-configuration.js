@@ -1,4 +1,5 @@
 import { reactCardBattleConfiguration } from "../src/react/card/battle/configuration.js";
+import { reactIdlePenguinConfiguration } from "../src/react/erp/idle-penguin/configuration.js";
 import { materialTemplateCDNConfiguration } from "../src/react/template/material-template-cdn/configuration.js";
 import { reactMaterialTemplateConfiguration } from "../src/react/template/material/configuration.js";
 import { reactTempoConfiguration } from "../src/react/tempo/configuration.js";
@@ -86,5 +87,6 @@ export const appConfiguration = {
     materialTemplateCDNConfiguration,
     reactTempoConfiguration,
     reactCardBattleConfiguration,
+    reactIdlePenguinConfiguration,
   ],
 };
