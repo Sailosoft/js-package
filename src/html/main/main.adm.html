@@ -1,6 +1,17 @@
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@300" rel="stylesheet" />
 
 <div x-data="appComponent" x-cloak>
+    <div x-show="isLoading" x-transition.opacity.duration.300ms class="adm_loader_overlay">
+        <div class="adm_loader_card">
+            <div class="adm_spinner_ring">
+                <div class="adm_spinner_active"></div>
+            </div>
+            <p class="adm_loader_text">
+                Launching <span x-text="activeAppKey" style="color: var(--adm-accent);"></span>
+            </p>
+            <div class="adm_loader_subtext">ESTABLISHING SECURE CONNECTION</div>
+        </div>
+    </div>
     <div class="adm_main_wrapper">
 
         <header class="adm_header_nav">
