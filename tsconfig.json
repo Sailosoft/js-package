@@ -23,5 +23,5 @@
       "@mui/material": ["./types/@mui/material/v5/index.d.ts"]
     }
   },
-  "include": ["src/**/*", "types/**/*", "types", "react/**/*"]
+  "include": ["src/**/*", "types/**/*", "types", "react/**/*", "modules/**/*"]
 }

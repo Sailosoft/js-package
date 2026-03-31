@@ -64,6 +64,8 @@ export const reactIdlePenguinConfiguration = {
     }
 
     try {
+      await loadScript("https://unpkg.com/dexie@3.2.4/dist/dexie.js");
+      await System.import("./src/react/erp/idle-penguin/api/IpServer.ts");
       const module = await System.import(
         "./src/react/erp/idle-penguin/web/src/App.tsx",
       );
