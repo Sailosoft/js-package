@@ -3,38 +3,16 @@ import { createRoot } from "react-dom/client";
 import { HashRouter, Switch, Route, Link } from "react-router-dom";
 import IpAppMainContextProvider from "./modules/main/components/providers/IpAppMainContextProvider.tsx";
 import IpAppMainLayout from "./modules/main/layouts/IpAppMainLayout.tsx";
+import RouteRender from "./routes/route.render.tsx";
+import { APP_ROUTES } from "./routes/route.ts";
+import { RouteNotFound } from "./routes/route.not-found.tsx";
 
 const App = () => {
   return (
     <>
       <IpAppMainLayout>
         <Container sx={{ mt: 4 }}>
-          <Switch>
-            <Route
-              exact
-              path="/"
-              component={() => (
-                <Box>
-                  <Typography variant="h4" gutterBottom>
-                    Hello World
-                  </Typography>
-                  <Typography>Welcome to your Material UI app.</Typography>
-                </Box>
-              )}
-            />
-
-            <Route
-              path="/about"
-              component={() => (
-                <Box>
-                  <Typography variant="h4" gutterBottom>
-                    About
-                  </Typography>
-                  <Typography>This is the about page.</Typography>
-                </Box>
-              )}
-            />
-          </Switch>
+          <RouteRender routes={APP_ROUTES} NotFound={RouteNotFound} />
         </Container>
       </IpAppMainLayout>
     </>

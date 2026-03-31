@@ -52,6 +52,7 @@ export default function IpDrawer() {
             to="/"
             icon="home"
             label="Home"
+            onClick={closeSidebar}
             active={location.pathname === "/"}
           />
           <NavigationItem
@@ -59,6 +60,7 @@ export default function IpDrawer() {
             icon="info"
             label="About Us"
             active={location.pathname === "/about"}
+            onClick={closeSidebar}
           />
         </List>
 
@@ -79,17 +81,20 @@ function NavigationItem({
   icon,
   label,
   active,
+  onClick
 }: {
   to: string;
   icon: string;
   label: string;
   active: boolean;
+  onClick?: () => void;
 }) {
   return (
     <ListItemButton
       component={Link}
       to={to}
       selected={active}
+      onClick={onClick}
       sx={{
         borderRadius: 2, // Rounded corners for a modern look
         mb: 0.5,
@@ -106,10 +111,10 @@ function NavigationItem({
       </ListItemIcon>
       <ListItemText
         primary={label}
-        // style={{
-        //   fontSize: "0.9rem",
-        //   fontWeight: active ? 600 : 400,
-        // }}
+        sx={{
+          fontSize: "0.9rem",
+          fontWeight: active ? 600 : 400,
+        }}
       />
     </ListItemButton>
   );

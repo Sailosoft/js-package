@@ -145,7 +145,7 @@ declare module "@mui/material" {
   >;
   const List: React.FC<BaseProps>;
   const ListItem: React.FC<BaseProps>;
-  const ListItemText: React.FC<{ primary?: ReactNode; secondary?: ReactNode }>;
+  const ListItemText: React.FC<BaseProps & { primary?: ReactNode; secondary?: ReactNode }>;
   const ListItemButton: React.FC<
     BaseProps & { 
       onClick?: (e: any) => void; 
@@ -157,7 +157,7 @@ declare module "@mui/material" {
     }
   >;
   const ListItemIcon: React.FC<BaseProps>;
-  const Tooltip: React.FC<{ title: ReactNode; children: React.ReactElement }>;
+  const Tooltip: React.FC<BaseProps & { title: ReactNode; children: React.ReactElement }>;
 
   // --- Feedback ---
   const Alert: React.FC<
