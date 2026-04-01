@@ -5,7 +5,7 @@
   "typescript.referencesCodeLens.enabled": true,
   "javascript.preferences.importModuleSpecifier": "relative",
   "javascript.preferences.importModuleSpecifierEnding": "js",
-  "typescript.preferences.importModuleSpecifier": "relative",
+  // "typescript.preferences.importModuleSpecifier": "relative",
   "typescript.preferences.importModuleSpecifierEnding": "js",
   "[javascript]": {
     "editor.tabSize": 2,

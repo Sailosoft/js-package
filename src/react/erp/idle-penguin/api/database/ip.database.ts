@@ -1,9 +1,10 @@
-import { IKorevelDepDexieTable, korevelDexie } from "../IpKorevel.ts";
-import { IPUser } from "../user-management/src/ip.user-management.interface.ts";
+import { korevelDexie } from "@korevel/src/modules/dependencies/index.ts";
 import { ipDatabaseStore } from "./ip.database.store.ts";
+import { IKorevelDepDexieTable } from "@korevel/src/modules/dependencies/dexie/dexie.def.ts";
+import { IPUser } from "../modules/users/src/index.ts";
 
 export class IPDatabase extends korevelDexie {
-  users!: IKorevelDepDexieTable<IPUser>;
+  users!: IKorevelDepDexieTable<IPUser, number>;
   constructor({ name }: { name: string }) {
     super(name);
 

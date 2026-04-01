@@ -55,6 +55,8 @@ export const reactIdlePenguinConfiguration = {
       "systemjs-importmap",
     );
 
+    window.Korevel = {};
+
     for (const script of scripts) {
       const obj = globalThis[script.object];
       System.set(script.esm, {
@@ -62,14 +64,24 @@ export const reactIdlePenguinConfiguration = {
         ...obj,
       });
     }
+    System.addImportMap({
+      imports: {
+        "@korevel/": "/modules/korevel/v1/",
+      },
+    });
 
+    // console.log(System);
+    // console.log(System.getImportMap());
     try {
       await loadScript("https://unpkg.com/dexie@3.2.4/dist/dexie.js");
       await System.import("./src/react/erp/idle-penguin/api/IpServer.ts");
-      const module = await System.import(
-        "./src/react/erp/idle-penguin/web/src/App.tsx",
-      );
-      console.log("Application Loaded:", module);
+      window.addEventListener("systemStartUp", async () => {
+        const module = await System.import(
+          "./src/react/erp/idle-penguin/web/src/App.tsx",
+        );
+
+        console.log("Application Loaded:", module);
+      });
     } catch (err) {
       console.error("SystemJS Import Error:", err);
     }
