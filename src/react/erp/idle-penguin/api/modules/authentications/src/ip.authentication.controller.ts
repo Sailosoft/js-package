@@ -9,7 +9,7 @@ export class IPAuthenticationController extends KorevelHttpController {
   }
 
   hello(request: IKorevelRequest) {
-    return "hello";
+    return "hello Update";
   }
 
   async register(request: IKorevelRequest<IPUserDto>) {
