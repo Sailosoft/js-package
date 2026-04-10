@@ -66,7 +66,7 @@ export const reactIdlePenguinConfiguration = {
     }
     System.addImportMap({
       imports: {
-        "@korevel/": "./modules/korevel/v1/",
+        "@korevel/": "./modules/korevel/v2/",
       },
     });
 

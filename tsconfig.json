@@ -21,7 +21,7 @@
         "./types/react-router-dom/local/react-router-dom.d.ts"
       ],
       "@mui/material": ["./types/@mui/material/v5/index.d.ts"],
-      "@korevel/*": ["modules/korevel/v1/*"]
+      "@korevel/*": ["modules/korevel/v2/*"]
     }
   },
   "include": ["src/**/*", "types/**/*", "types", "react/**/*", "modules/**/*"]
